@@ -1,6 +1,6 @@
 {
  "actions": [],
- "creation": "2026-06-03 00:00:00.000000",
+ "creation": "2026-06-03 00:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -9,6 +9,11 @@
   "default_vehicle_garage_naming",
   "column_break_naming",
   "default_rma_naming",
+  "reorder_setup_section",
+  "reorder_level",
+  "reorder_warehouse",
+  "column_break_tqhp",
+  "reorder_qty",
   "integrations_tab",
   "vin_section",
   "enable_vin_decode_cache",
@@ -122,11 +127,36 @@
    "fieldname": "pies_import_path",
    "fieldtype": "Data",
    "label": "PIES Import Folder Path"
+  },
+  {
+   "fieldname": "reorder_setup_section",
+   "fieldtype": "Section Break",
+   "label": "Reorder Setup"
+  },
+  {
+   "fieldname": "reorder_level",
+   "fieldtype": "Int",
+   "label": "Reorder Level"
+  },
+  {
+   "fieldname": "reorder_warehouse",
+   "fieldtype": "Link",
+   "label": "Reorder Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_tqhp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reorder_qty",
+   "fieldtype": "Int",
+   "label": "Reorder Qty"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2026-06-03 00:00:00.000000",
+ "modified": "2026-06-04 16:08:32.960188",
  "modified_by": "Administrator",
  "module": "Auto Parts",
  "name": "Auto Parts Settings",
@@ -143,6 +173,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
