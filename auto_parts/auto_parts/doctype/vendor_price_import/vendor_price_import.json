@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "supplier",
+  "import_date",
+  "column_break_vpi",
+  "status",
+  "price_list",
+  "section_break_lines",
+  "import_lines"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "VPI-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "import_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Import Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Draft\nProcessing\nCompleted\nFailed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Target Price List",
+   "options": "Price List"
+  },
+  {
+   "fieldname": "section_break_lines",
+   "fieldtype": "Section Break",
+   "label": "Import Lines"
+  },
+  {
+   "fieldname": "import_lines",
+   "fieldtype": "Table",
+   "label": "Lines",
+   "options": "Vendor Price Import Line"
+  }
+ ],
+ "is_submittable": 1,
+ "module": "Auto Parts",
+ "name": "Vendor Price Import",
+ "naming_rule": "By \"Naming Series\" field",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

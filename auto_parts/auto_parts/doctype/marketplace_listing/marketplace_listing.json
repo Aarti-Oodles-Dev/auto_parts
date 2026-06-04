@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "marketplace_channel",
+  "column_break_ml",
+  "external_listing_id",
+  "listing_status",
+  "price_list",
+  "qty_buffer",
+  "last_synced_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "marketplace_channel",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Marketplace Channel",
+   "options": "Marketplace Channel",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ml",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "external_listing_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "External Listing ID"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "listing_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Listing Status",
+   "options": "Draft\nActive\nPaused\nError"
+  },
+  {
+   "fetch_from": "marketplace_channel.price_list",
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Price List",
+   "options": "Price List"
+  },
+  {
+   "default": "0",
+   "fieldname": "qty_buffer",
+   "fieldtype": "Int",
+   "label": "Qty Buffer"
+  },
+  {
+   "fieldname": "last_synced_on",
+   "fieldtype": "Datetime",
+   "label": "Last Synced On",
+   "read_only": 1
+  }
+ ],
+ "module": "Auto Parts",
+ "name": "Marketplace Listing",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "item,marketplace_channel,external_listing_id",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

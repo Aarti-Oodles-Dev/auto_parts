@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "qty",
+  "reason",
+  "return_warehouse",
+  "serial_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Reason",
+   "options": "\nDefective\nWrong Part\nCustomer Request\nWarranty"
+  },
+  {
+   "fieldname": "return_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Return Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No"
+  }
+ ],
+ "istable": 1,
+ "module": "Auto Parts",
+ "name": "RMA Item",
+ "permissions": []
+}

@@ -1,0 +1,150 @@
+{
+ "actions": [],
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general_tab",
+  "naming_section",
+  "default_vehicle_garage_naming",
+  "column_break_naming",
+  "default_rma_naming",
+  "integrations_tab",
+  "vin_section",
+  "enable_vin_decode_cache",
+  "vin_decode_api_url",
+  "column_break_vin",
+  "vin_decode_api_key",
+  "marketplace_section",
+  "enable_marketplace_sync",
+  "default_stock_reserve_percent",
+  "marketplace_channels_help",
+  "aces_section",
+  "aces_import_path",
+  "column_break_aces",
+  "pies_import_path"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "naming_section",
+   "fieldtype": "Section Break",
+   "label": "Naming Series"
+  },
+  {
+   "default": "VG-.YYYY.-.#####",
+   "fieldname": "default_vehicle_garage_naming",
+   "fieldtype": "Data",
+   "label": "Vehicle Garage Naming Series"
+  },
+  {
+   "fieldname": "column_break_naming",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "RMA-.YYYY.-.#####",
+   "fieldname": "default_rma_naming",
+   "fieldtype": "Data",
+   "label": "RMA Naming Series"
+  },
+  {
+   "fieldname": "integrations_tab",
+   "fieldtype": "Tab Break",
+   "label": "Integrations"
+  },
+  {
+   "fieldname": "vin_section",
+   "fieldtype": "Section Break",
+   "label": "VIN Decode"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_vin_decode_cache",
+   "fieldtype": "Check",
+   "label": "Enable VIN Decode Cache"
+  },
+  {
+   "fieldname": "vin_decode_api_url",
+   "fieldtype": "Data",
+   "label": "VIN Decode API URL"
+  },
+  {
+   "fieldname": "column_break_vin",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vin_decode_api_key",
+   "fieldtype": "Password",
+   "label": "VIN Decode API Key"
+  },
+  {
+   "fieldname": "marketplace_section",
+   "fieldtype": "Section Break",
+   "label": "Marketplace"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_marketplace_sync",
+   "fieldtype": "Check",
+   "label": "Enable Marketplace Sync"
+  },
+  {
+   "default": "10",
+   "fieldname": "default_stock_reserve_percent",
+   "fieldtype": "Percent",
+   "label": "Default Stock Reserve % (Oversell Prevention)"
+  },
+  {
+   "fieldname": "marketplace_channels_help",
+   "fieldtype": "HTML",
+   "label": "Channel Setup",
+   "options": "<div class=\"text-muted\" style=\"margin-bottom:8px\">Configure each marketplace in its own form (not a table here).</div>"
+  },
+  {
+   "fieldname": "aces_section",
+   "fieldtype": "Section Break",
+   "label": "ACES / PIES"
+  },
+  {
+   "fieldname": "aces_import_path",
+   "fieldtype": "Data",
+   "label": "ACES Import Folder Path"
+  },
+  {
+   "fieldname": "column_break_aces",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pies_import_path",
+   "fieldtype": "Data",
+   "label": "PIES Import Folder Path"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-06-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Auto Parts",
+ "name": "Auto Parts Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

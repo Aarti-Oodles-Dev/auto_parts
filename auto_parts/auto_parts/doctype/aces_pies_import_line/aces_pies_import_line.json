@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "raw_sku",
+  "brand",
+  "part_terminology",
+  "import_status",
+  "target_item",
+  "error_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "raw_sku",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Raw SKU"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Brand"
+  },
+  {
+   "fieldname": "part_terminology",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Part Terminology"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "import_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nValidated\nPromoted\nFailed"
+  },
+  {
+   "fieldname": "target_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message"
+  }
+ ],
+ "istable": 1,
+ "module": "Auto Parts",
+ "name": "ACES PIES Import Line",
+ "permissions": []
+}

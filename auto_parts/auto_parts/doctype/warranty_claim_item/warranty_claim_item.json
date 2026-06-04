@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "qty",
+  "failure_code",
+  "resolution",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "failure_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Failure Code"
+  },
+  {
+   "fieldname": "resolution",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Resolution",
+   "options": "\nReplace\nCredit Note\nReject"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "module": "Auto Parts",
+ "name": "Warranty Claim Item",
+ "permissions": []
+}

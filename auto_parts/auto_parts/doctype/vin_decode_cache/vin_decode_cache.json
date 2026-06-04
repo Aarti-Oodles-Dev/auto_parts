@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "autoname": "field:vin",
+ "creation": "2026-06-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vin",
+  "decoded_on",
+  "vehicle_configuration",
+  "section_break_payload",
+  "decode_payload"
+ ],
+ "fields": [
+  {
+   "fieldname": "vin",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "VIN",
+   "length": 17,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "decoded_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Decoded On"
+  },
+  {
+   "fieldname": "vehicle_configuration",
+   "fieldtype": "Link",
+   "label": "Vehicle Configuration",
+   "options": "Vehicle Configuration"
+  },
+  {
+   "fieldname": "section_break_payload",
+   "fieldtype": "Section Break",
+   "label": "Payload"
+  },
+  {
+   "fieldname": "decode_payload",
+   "fieldtype": "JSON",
+   "label": "Decode Payload"
+  }
+ ],
+ "module": "Auto Parts",
+ "name": "VIN Decode Cache",
+ "naming_rule": "By fieldname",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
