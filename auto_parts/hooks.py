@@ -33,4 +33,14 @@ fixtures = [
 		"dt": "DocType",
 		"filters": [["module", "=", "Auto Parts"]],
 	},
+    {"dt": "Workflow", "filters": [["name", "=", "Transfer Approval"]]},
+    {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Pending Approval", "Approved", "Rejected"]]]},
+    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Pending Approval"]]]},
 ]
+
+# Daily auto-run ke liye
+scheduler_events = {
+    "daily": [
+        "auto_parts.auto_parts.doctype.auto_parts_settings.auto_parts_settings.create_reorder_material_requests"
+    ]
+}
