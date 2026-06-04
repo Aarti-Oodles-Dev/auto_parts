@@ -22,6 +22,24 @@ after_install = "auto_parts.install.after_install"
 doctype_js = {
 	"Sales Order": "public/js/sales_order.js",
 	"Sales Invoice": "public/js/sales_invoice.js",
+	"Customer": "public/js/customer.js",
+}
+
+doc_events = {
+	"Sales Order": {
+		"validate": "auto_parts.sales.sales_order.validate_sales_order",
+		"on_submit": "auto_parts.sales.sales_order.on_submit_sales_order",
+	},
+	"Sales Invoice": {
+		"before_insert": "auto_parts.sales.sales_order.copy_vehicle_from_sales_order",
+		"validate": "auto_parts.sales.sales_order.validate_sales_invoice_garage",
+	},
+	"Purchase Order": {
+		"validate": "auto_parts.sales.purchase_order.validate_purchase_order",
+	},
+	"Customer": {
+		"validate": "auto_parts.sales.customer.validate_customer",
+	},
 }
 
 fixtures = [
