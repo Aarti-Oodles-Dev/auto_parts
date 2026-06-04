@@ -4,3 +4,4 @@
 
 [post_model_sync]
 auto_parts.patches.v1_0.setup_marketplace_channels
+auto_parts.patches.v1_0.setup_sales_defaults
