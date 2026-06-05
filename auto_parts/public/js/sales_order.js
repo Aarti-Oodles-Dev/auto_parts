@@ -22,7 +22,7 @@ frappe.ui.form.on("Sales Order", {
 	},
 
 	toggle_vin_editability(frm) {
-		// Garage empty → type/paste VIN (row 91). Garage set → VIN from garage (row 87).
+		// Garage empty --> type/paste VIN . Garage set -->VIN from garage.
 		frm.set_df_property("vin", "read_only", frm.doc.vehicle_garage ? 1 : 0);
 	},
 
