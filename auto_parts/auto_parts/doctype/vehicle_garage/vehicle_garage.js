@@ -25,8 +25,33 @@ function apply_decoded_to_garage(frm, data) {
 }
 
 frappe.ui.form.on("Vehicle Garage", {
+	onload(frm) {
+		if (frm.is_new() && !frm.doc.naming_series) {
+			frappe.db
+				.get_single_value("Auto Parts Settings", "default_vehicle_garage_naming")
+				.then((series) => {
+					if (series) {
+						frm.set_value("naming_series", series);
+					}
+				});
+		}
+
+		if (frm.is_new() && frappe.route_options?.customer && !frm.doc.customer) {
+			frm.set_value("customer", frappe.route_options.customer);
+		}
+	},
+
 	refresh(frm) {
 		frm.add_custom_button(__("Decode VIN"), () => frm.events.decode_vin(frm));
+
+		if (!frm.is_new()) {
+			frm.add_custom_button(__("Sales History"), () => {
+				frappe.set_route("query-report", "Vehicle Sales History", {
+					vehicle_garage: frm.doc.name,
+					customer: frm.doc.customer,
+				});
+			});
+		}
 	},
 
 	decode_vin(frm) {

@@ -4,11 +4,14 @@
 import frappe
 from frappe.model.document import Document
 
+from auto_parts.vin.decode import normalize_vin, validate_vin
+
 
 class VehicleGarage(Document):
 	def validate(self):
 		if self.vin:
-			self.vin = self.vin.strip().upper()
+			self.vin = normalize_vin(self.vin)
+			validate_vin(self.vin)
 
 	def before_save(self):
 		if self.vehicle_configuration and not self.make:

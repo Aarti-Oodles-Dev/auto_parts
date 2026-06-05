@@ -25,6 +25,10 @@ doctype_js = {
 	"Customer": "public/js/customer.js",
 }
 
+override_doctype_dashboards = {
+	"Customer": "auto_parts.vehicle_garage.customer_dashboard.get_dashboard_data",
+}
+
 doc_events = {
 	"Sales Order": {
 		"validate": "auto_parts.sales.sales_order.validate_sales_order",
