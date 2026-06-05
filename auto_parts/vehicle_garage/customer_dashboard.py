@@ -4,7 +4,7 @@ from frappe import _
 
 
 def get_dashboard_data(data):
-	"""Row 93: show Vehicle Garage on Customer dashboard."""
+
 	for group in data.transactions:
 		if group.get("label") == _("Vehicles") and "Vehicle Garage" in group.get("items", []):
 			return data
