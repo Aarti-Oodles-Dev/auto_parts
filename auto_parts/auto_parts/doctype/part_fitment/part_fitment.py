@@ -1,5 +1,20 @@
+import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
 class PartFitment(Document):
-	pass
+	def validate(self):
+		if not self.source:
+			self.source = "Manual"
+
+		filters = {
+			"item": self.item,
+			"vehicle_configuration": self.vehicle_configuration,
+			"position": self.position or "",
+			"name": ["!=", self.name],
+		}
+		if frappe.db.exists("Part Fitment", filters):
+			frappe.throw(
+				_("A fitment already exists for this Item, Vehicle Configuration, and Position.")
+			)
