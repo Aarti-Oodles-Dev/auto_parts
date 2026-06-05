@@ -16,8 +16,14 @@ frappe.ui.form.on("Sales Order", {
 	},
 
 	refresh(frm) {
+		frm.trigger("toggle_vin_editability");
 		frm.trigger("toggle_auto_parts_flags");
 		frm.trigger("setup_auto_parts_buttons");
+	},
+
+	toggle_vin_editability(frm) {
+		// Garage empty → type/paste VIN (row 91). Garage set → VIN from garage (row 87).
+		frm.set_df_property("vin", "read_only", frm.doc.vehicle_garage ? 1 : 0);
 	},
 
 	customer(frm) {
@@ -27,12 +33,60 @@ frappe.ui.form.on("Sales Order", {
 	},
 
 	vehicle_garage(frm) {
+		frm.trigger("toggle_vin_editability");
 		if (!frm.doc.vehicle_garage) {
 			frm.set_value("vin", "");
 			return;
 		}
 		frappe.db.get_value("Vehicle Garage", frm.doc.vehicle_garage, "vin").then((r) => {
+			frm._vin_from_garage = true;
 			frm.set_value("vin", r.message?.vin || "");
+		});
+	},
+
+	vin(frm) {
+		if (frm._vin_from_garage) {
+			frm._vin_from_garage = false;
+			return;
+		}
+
+		const vin = (frm.doc.vin || "").trim().toUpperCase();
+		if (vin.length !== 17) {
+			return;
+		}
+
+		if (!frm.doc.customer) {
+			frappe.msgprint(__("Select Customer before decoding VIN."));
+			return;
+		}
+
+		frappe.call({
+			method: "auto_parts.vin.decode.apply_vin_to_sales_order",
+			args: { vin, customer: frm.doc.customer },
+			freeze: true,
+			freeze_message: __("Looking up VIN..."),
+			callback(r) {
+				if (!r.message) return;
+
+				if (r.message.vehicle_garage) {
+					frm._vin_from_garage = true;
+					frm.set_value("vehicle_garage", r.message.vehicle_garage);
+					frappe.show_alert({
+						message: __("Vehicle Garage linked from VIN."),
+						indicator: "green",
+					});
+					return;
+				}
+
+				frappe.show_alert({
+					message: __("VIN decoded: {0} {1} {2}. Create a Vehicle Garage to save this vehicle.", [
+						r.message.year || "",
+						r.message.make || "",
+						r.message.model || "",
+					]),
+					indicator: "orange",
+				});
+			},
 		});
 	},
 

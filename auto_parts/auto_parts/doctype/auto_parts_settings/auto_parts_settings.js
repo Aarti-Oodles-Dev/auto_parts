@@ -5,7 +5,7 @@ frappe.ui.form.on("Auto Parts Settings", {
 	refresh(frm) {
 		frm.set_intro(
 			__(
-				"Global defaults only. Open Marketplace Channel to configure eBay, Amazon, and Shopify."
+				"VIN: leave API URL empty to use free NHTSA decode. Add URL/key for a commercial provider. Marketplace channels open from the button below."
 			)
 		);
 
