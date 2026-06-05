@@ -23,10 +23,12 @@ doctype_js = {
 	"Sales Order": "public/js/sales_order.js",
 	"Sales Invoice": "public/js/sales_invoice.js",
 	"Customer": "public/js/customer.js",
+	"Item": "public/js/item.js",
 }
 
 override_doctype_dashboards = {
 	"Customer": "auto_parts.vehicle_garage.customer_dashboard.get_dashboard_data",
+	"Item": "auto_parts.fitment.item_dashboard.get_dashboard_data",
 }
 
 doc_events = {
@@ -43,6 +45,9 @@ doc_events = {
 	},
 	"Customer": {
 		"validate": "auto_parts.sales.customer.validate_customer",
+	},
+	"Item": {
+		"validate": "auto_parts.cross_reference.item.validate_item_cross_references",
 	},
 }
 
