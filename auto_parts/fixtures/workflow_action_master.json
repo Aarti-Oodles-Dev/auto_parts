@@ -2,6 +2,27 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2026-06-08 12:55:44.651092",
+  "name": "Resolved",
+  "workflow_action_name": "Resolved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-06-08 12:57:51.254440",
+  "name": "Inspect",
+  "workflow_action_name": "Inspect"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-06-08 12:58:10.965044",
+  "name": "Credit",
+  "workflow_action_name": "Credit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2026-06-04 17:23:59.463377",
   "name": "Pending Approval",
   "workflow_action_name": "Pending Approval"

@@ -24,6 +24,7 @@ doctype_js = {
 	"Sales Invoice": "public/js/sales_invoice.js",
 	"Customer": "public/js/customer.js",
 	"Item": "public/js/item.js",
+    "Delivery Note": "public/js/delivery_note.js",
 }
 
 override_doctype_dashboards = {
@@ -52,17 +53,17 @@ doc_events = {
 }
 
 fixtures = [
-	{
-		"dt": "Custom Field",
-		"filters": [["module", "=", "Auto Parts"]],
-	},
-	{
-		"dt": "DocType",
-		"filters": [["module", "=", "Auto Parts"]],
-	},
-    {"dt": "Workflow", "filters": [["name", "=", "Transfer Approval"]]},
-    {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Pending Approval", "Approved", "Rejected"]]]},
-    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Pending Approval"]]]},
+	# {
+	# 	"dt": "Custom Field",
+	# 	"filters": [["module", "=", "Auto Parts"]],
+	# },
+	# {
+	# 	"dt": "DocType",
+	# 	"filters": [["module", "=", "Auto Parts"]],
+	# },
+    {"dt": "Workflow", "filters": [["name", "in", ["Transfer Approval", "RMA Approval", "Warranty Claim Flow", "Core Return Flow"]]]},
+    {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Pending Approval", "Approved", "Rejected", "Credited", "Inspected", "Received", "Resolved", "Pending"]]]},
+    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Pending Approval", "Credit", "Inspect", "Resolved"]]]},
 ]
 
 # Daily auto-run ke liye

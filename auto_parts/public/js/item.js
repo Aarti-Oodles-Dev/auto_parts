@@ -130,7 +130,38 @@ frappe.ui.form.on("Item", {
 			},
 			__("Auto Parts")
 		);
+		
+            frm.add_custom_button(__('View Supersession Chain'), function() {
+                frappe.call({
+                    method: 'auto_parts.auto_parts.doctype.part_supersession.part_supersession.get_supersession_chain',
+                    args: { item_code: frm.doc.name },
+                    callback: function(r) {
+                        if (r.message) {
+                            let chain = r.message.join(' → ');
+                            frappe.msgprint({
+                                title: __('Supersession Chain'),
+                                message: chain,
+                                indicator: 'blue'
+                            });
+                        }
+                    }
+                });
+            }, __('Part Info'));
+        
+
+        // Warning if this item is superseded
+        if (frm.doc.superseded_by) {
+            frm.dashboard.add_comment(
+                `This part is superseded by <b>${frm.doc.superseded_by}</b>`,
+                'orange', true
+            );
+        }
 	},
+	superseded_by: function(frm) {
+        if (frm.doc.superseded_by && frm.doc.superseded_by === frm.doc.name) {
+            frappe.throw(__('Item cannot supersede itself'));
+        }
+    }
 });
 
 frappe.ui.form.on("Item Cross Reference", {
