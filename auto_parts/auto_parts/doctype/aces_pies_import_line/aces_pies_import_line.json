@@ -8,8 +8,24 @@
   "raw_sku",
   "brand",
   "part_terminology",
+  "description",
+  "vehicle_section",
+  "year",
+  "make",
+  "model",
+  "column_break_vehicle",
+  "submodel",
+  "engine",
+  "position",
+  "qty",
+  "base_vehicle_id",
+  "aces_record_id",
+  "qualifier_ids",
+  "qualifiers",
+  "result_section",
   "import_status",
   "target_item",
+  "target_fitment",
   "error_message"
  ],
  "fields": [
@@ -17,7 +33,7 @@
    "fieldname": "raw_sku",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Raw SKU"
+   "label": "Raw SKU / Part Number"
   },
   {
    "fieldname": "brand",
@@ -29,7 +45,82 @@
    "fieldname": "part_terminology",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Part Terminology"
+   "label": "Part Terminology (PCdb)"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "vehicle_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle (ACES)"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model"
+  },
+  {
+   "fieldname": "column_break_vehicle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "submodel",
+   "fieldtype": "Data",
+   "label": "Submodel"
+  },
+  {
+   "fieldname": "engine",
+   "fieldtype": "Data",
+   "label": "Engine"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qty"
+  },
+  {
+   "fieldname": "base_vehicle_id",
+   "fieldtype": "Data",
+   "label": "Base Vehicle ID (VCdb)"
+  },
+  {
+   "fieldname": "aces_record_id",
+   "fieldtype": "Data",
+   "label": "ACES Record ID"
+  },
+  {
+   "fieldname": "qualifier_ids",
+   "fieldtype": "Data",
+   "label": "Qualifier IDs (Qdb)"
+  },
+  {
+   "fieldname": "qualifiers",
+   "fieldtype": "Small Text",
+   "label": "Qualifiers"
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
   },
   {
    "default": "Pending",
@@ -45,6 +136,12 @@
    "in_list_view": 1,
    "label": "Target Item",
    "options": "Item"
+  },
+  {
+   "fieldname": "target_fitment",
+   "fieldtype": "Link",
+   "label": "Target Fitment",
+   "options": "Part Fitment"
   },
   {
    "fieldname": "error_message",
