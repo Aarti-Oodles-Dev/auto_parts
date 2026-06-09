@@ -9,6 +9,15 @@
   "default_vehicle_garage_naming",
   "column_break_naming",
   "default_rma_naming",
+  "carrier_settings_ups_fedex_usps_credentials_section",
+  "ups_account_number",
+  "fedex_account_number",
+  "shipstation_api_key",
+  "usps_user_id",
+  "column_break_nmun",
+  "ups_api_key",
+  "fedex_api_key",
+  "shipstation_api_secret",
   "reorder_setup_section",
   "reorder_level",
   "reorder_warehouse",
@@ -152,11 +161,55 @@
    "fieldname": "reorder_qty",
    "fieldtype": "Int",
    "label": "Reorder Qty"
+  },
+  {
+   "fieldname": "carrier_settings_ups_fedex_usps_credentials_section",
+   "fieldtype": "Section Break",
+   "label": "Carrier Settings (UPS, FedEx, USPS credentials)"
+  },
+  {
+   "fieldname": "ups_account_number",
+   "fieldtype": "Data",
+   "label": "UPS Account Number"
+  },
+  {
+   "fieldname": "column_break_nmun",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ups_api_key",
+   "fieldtype": "Password",
+   "label": "UPS API Key"
+  },
+  {
+   "fieldname": "fedex_account_number",
+   "fieldtype": "Data",
+   "label": "FedEx Account Number"
+  },
+  {
+   "fieldname": "shipstation_api_key",
+   "fieldtype": "Data",
+   "label": "ShipStation API Key"
+  },
+  {
+   "fieldname": "usps_user_id",
+   "fieldtype": "Password",
+   "label": "USPS User ID"
+  },
+  {
+   "fieldname": "fedex_api_key",
+   "fieldtype": "Password",
+   "label": "FedEx API Key"
+  },
+  {
+   "fieldname": "shipstation_api_secret",
+   "fieldtype": "Password",
+   "label": "ShipStation API Secret"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2026-06-04 16:08:32.960188",
+ "modified": "2026-06-08 14:27:33.943822",
  "modified_by": "Administrator",
  "module": "Auto Parts",
  "name": "Auto Parts Settings",
