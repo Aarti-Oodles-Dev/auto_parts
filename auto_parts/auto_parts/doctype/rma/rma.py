@@ -15,11 +15,10 @@ class RMA(Document):
 
         for item in self.items:
             dn.append('items', {
-                'item_code': item.item_code,
-                'qty': item.qty,
-                'warehouse': item.warehouse,
-                'against_sales_invoice': item.sales_invoice,
-                'batch_no': item.batch_no or ''
+                'item_code': item.item,
+                'qty': -item.qty,
+                'warehouse': item.return_warehouse,
+                'return_against': self.delivery_note,
             })
 
         dn.flags.ignore_permissions = True

@@ -41,6 +41,14 @@
    "reqd": 1
   },
   {
+   "fieldname": "return_dn",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Return Delivery Note",
+   "options": "Delivery Note",
+   "reqd": 0
+  },
+  {
    "fieldname": "column_break_rma",
    "fieldtype": "Column Break"
   },
