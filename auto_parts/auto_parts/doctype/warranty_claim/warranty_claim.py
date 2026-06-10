@@ -16,17 +16,15 @@ class WarrantyClaim(Document):
 
         for item in self.items:
             si.append('items', {
-                'item_code': item.item_code,
+                'item_code': item.item,
                 'qty': -1 * item.qty,
-                'rate': item.rate,
-                'warehouse': item.warehouse
             })
 
         si.flags.ignore_permissions = True
         si.insert()
         si.submit()
 
-        self.db_set('credit_note', si.name)
+        self.db_set('sales_invoice', si.name)
 
         frappe.msgprint(
             f'Credit Note <b>{si.name}</b> created.',
