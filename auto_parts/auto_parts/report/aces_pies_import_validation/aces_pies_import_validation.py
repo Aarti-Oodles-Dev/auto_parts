@@ -1,6 +1,6 @@
 # Copyright (c) 2026, Masood Javid and contributors
 
-"""Lists failed / skipped ACES-PIES staging lines so they can be corrected."""
+"""Lists failed, skipped, and pending ACES-PIES staging lines so they can be corrected."""
 
 import frappe
 from frappe import _
@@ -48,7 +48,7 @@ def get_data(filters):
 		conditions.append("line.import_status = %(import_status)s")
 		values["import_status"] = status
 	else:
-		conditions.append("line.import_status in ('Failed', 'Pending')")
+		conditions.append("line.import_status in ('Failed', 'Skipped', 'Pending')")
 
 	if filters.get("import_batch"):
 		conditions.append("line.parent = %(import_batch)s")

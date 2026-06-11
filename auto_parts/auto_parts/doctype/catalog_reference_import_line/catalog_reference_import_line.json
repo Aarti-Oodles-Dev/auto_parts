@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "creation": "2026-06-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_key",
+  "import_status",
+  "error_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reference Key",
+   "read_only": 1
+  },
+  {
+   "fieldname": "import_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Imported\nSkipped\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Error Message",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "module": "Auto Parts",
+ "name": "Catalog Reference Import Line",
+ "permissions": []
+}

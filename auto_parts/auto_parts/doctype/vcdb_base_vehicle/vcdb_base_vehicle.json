@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "field:vcdb_id",
+ "creation": "2026-06-09 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vcdb_id",
+  "year",
+  "make_id",
+  "make",
+  "column_break_vehicle",
+  "model_id",
+  "model",
+  "submodel",
+  "engine"
+ ],
+ "fields": [
+  {
+   "fieldname": "vcdb_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Base Vehicle ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Year"
+  },
+  {
+   "fieldname": "make_id",
+   "fieldtype": "Data",
+   "label": "Make ID"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Make"
+  },
+  {
+   "fieldname": "column_break_vehicle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "model_id",
+   "fieldtype": "Data",
+   "label": "Model ID"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Model"
+  },
+  {
+   "fieldname": "submodel",
+   "fieldtype": "Data",
+   "label": "Submodel"
+  },
+  {
+   "fieldname": "engine",
+   "fieldtype": "Data",
+   "label": "Engine"
+  }
+ ],
+ "links": [],
+ "modified": "2026-06-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Auto Parts",
+ "name": "VCdb Base Vehicle",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "vcdb_id,year,make,model,engine",
+ "sort_field": "year",
+ "sort_order": "DESC",
+ "title_field": "vcdb_id",
+ "track_changes": 1
+}
