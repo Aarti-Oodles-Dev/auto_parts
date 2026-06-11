@@ -10,9 +10,18 @@
   "column_break_ml",
   "external_listing_id",
   "listing_status",
+  "section_break_pricing",
+  "pricing_method",
+  "channel_markup_percent",
+  "listing_price",
+  "column_break_pricing",
   "price_list",
   "qty_buffer",
-  "last_synced_on"
+  "section_break_sync",
+  "last_synced_on",
+  "last_synced_qty",
+  "column_break_sync",
+  "last_synced_price"
  ],
  "fields": [
   {
@@ -53,6 +62,34 @@
    "options": "Draft\nActive\nPaused\nError"
   },
   {
+   "fieldname": "section_break_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "default": "Cost Plus",
+   "fieldname": "pricing_method",
+   "fieldtype": "Select",
+   "label": "Pricing Method",
+   "options": "Cost Plus\nPrice List\nFixed"
+  },
+  {
+   "default": "15",
+   "fieldname": "channel_markup_percent",
+   "fieldtype": "Percent",
+   "label": "Channel Markup %"
+  },
+  {
+   "fieldname": "listing_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Listing Price"
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
    "fetch_from": "marketplace_channel.price_list",
    "fieldname": "price_list",
    "fieldtype": "Link",
@@ -66,9 +103,30 @@
    "label": "Qty Buffer"
   },
   {
+   "fieldname": "section_break_sync",
+   "fieldtype": "Section Break",
+   "label": "Last Sync"
+  },
+  {
    "fieldname": "last_synced_on",
    "fieldtype": "Datetime",
    "label": "Last Synced On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_synced_qty",
+   "fieldtype": "Int",
+   "label": "Last Synced Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sync",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_synced_price",
+   "fieldtype": "Currency",
+   "label": "Last Synced Price",
    "read_only": 1
   }
  ],
