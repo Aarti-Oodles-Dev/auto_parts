@@ -8,6 +8,7 @@
   "raw_sku",
   "brand",
   "part_terminology",
+  "part_terminology_id",
   "description",
   "vehicle_section",
   "year",
@@ -20,6 +21,7 @@
   "qty",
   "base_vehicle_id",
   "aces_record_id",
+  "aces_action",
   "qualifier_ids",
   "qualifiers",
   "result_section",
@@ -46,6 +48,11 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Part Terminology (PCdb)"
+  },
+  {
+   "fieldname": "part_terminology_id",
+   "fieldtype": "Data",
+   "label": "Part Terminology ID (PCdb)"
   },
   {
    "fieldname": "description",
@@ -108,6 +115,11 @@
    "label": "ACES Record ID"
   },
   {
+   "fieldname": "aces_action",
+   "fieldtype": "Data",
+   "label": "ACES Action"
+  },
+  {
    "fieldname": "qualifier_ids",
    "fieldtype": "Data",
    "label": "Qualifier IDs (Qdb)"
@@ -128,7 +140,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nValidated\nPromoted\nFailed"
+   "options": "Pending\nValidated\nPromoted\nSkipped\nFailed"
   },
   {
    "fieldname": "target_item",

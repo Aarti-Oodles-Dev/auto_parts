@@ -1,5 +1,7 @@
 // Copyright (c) 2026, Masood Javid and contributors
 
+let parse_poll_timer = null;
+
 frappe.ui.form.on("ACES PIES Import Batch", {
 	refresh(frm) {
 		if (frm.is_new()) {
@@ -7,7 +9,7 @@ frappe.ui.form.on("ACES PIES Import Batch", {
 		}
 
 		if (frm.doc.docstatus === 0) {
-			frm.add_custom_button(__("Parse File"), () => parse_import_file(frm)).addClass(
+			frm.add_custom_button(__("Parse File"), () => enqueue_parse_import_file(frm)).addClass(
 				"btn-primary"
 			);
 		}
@@ -22,8 +24,17 @@ frappe.ui.form.on("ACES PIES Import Batch", {
 
 		if (frm.doc.status === "Processing") {
 			frm.dashboard.set_headline(
-				__("Processing... reload the page in a few seconds.")
+				__("Processing in background... this page will refresh automatically.")
 			);
+			start_parse_poll(frm);
+		} else {
+			stop_parse_poll();
+		}
+	},
+
+	onload(frm) {
+		if (frm.doc.status === "Processing") {
+			start_parse_poll(frm);
 		}
 	},
 
@@ -37,8 +48,7 @@ frappe.ui.form.on("ACES PIES Import Batch", {
 	},
 });
 
-function parse_import_file(frm) {
-	// Reload first so Parse uses the saved import_file from the server.
+function enqueue_parse_import_file(frm) {
 	frm.reload_doc().then(() => {
 		if (!frm.doc.import_file) {
 			frappe.msgprint({
@@ -53,19 +63,55 @@ function parse_import_file(frm) {
 
 		frappe.call({
 			method:
-				"auto_parts.auto_parts.doctype.aces_pies_import_batch.aces_pies_import_batch.parse_import_file_now",
+				"auto_parts.auto_parts.doctype.aces_pies_import_batch.aces_pies_import_batch.enqueue_parse",
 			args: { batch_name: frm.doc.name },
 			freeze: true,
-			freeze_message: __("Parsing XML file..."),
-			callback(r) {
-				if (r.message?.total_rows !== undefined) {
+			freeze_message: __("Queuing XML parse job..."),
+			callback() {
+				frm.reload_doc().then(() => start_parse_poll(frm));
+			},
+		});
+	});
+}
+
+function start_parse_poll(frm) {
+	stop_parse_poll();
+	parse_poll_timer = setInterval(() => poll_batch_status(frm), 3000);
+}
+
+function stop_parse_poll() {
+	if (parse_poll_timer) {
+		clearInterval(parse_poll_timer);
+		parse_poll_timer = null;
+	}
+}
+
+function poll_batch_status(frm) {
+	frappe.call({
+		method:
+			"auto_parts.auto_parts.doctype.aces_pies_import_batch.aces_pies_import_batch.get_batch_status",
+		args: { batch_name: frm.doc.name },
+		callback(r) {
+			const status = r.message?.status;
+			if (!status || status === "Processing") {
+				return;
+			}
+
+			stop_parse_poll();
+			frm.reload_doc().then(() => {
+				if (status === "Draft" && r.message?.total_rows) {
 					frappe.show_alert({
 						message: __("Parsed {0} rows.", [r.message.total_rows]),
 						indicator: "green",
 					});
+				} else if (status === "Failed") {
+					frappe.msgprint({
+						title: __("Parse Failed"),
+						message: __("Check the Error Log for details."),
+						indicator: "red",
+					});
 				}
-				frm.reload_doc();
-			},
-		});
+			});
+		},
 	});
 }

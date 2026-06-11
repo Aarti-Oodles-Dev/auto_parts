@@ -5,7 +5,7 @@ from frappe import _
 from frappe.utils import cint
 
 
-def _resolve_vehicle_configuration(
+def resolve_vehicle_configuration(
 	vehicle_configuration: str | None = None,
 	year: int | None = None,
 	make: str | None = None,
@@ -27,12 +27,18 @@ def _resolve_vehicle_configuration(
 @frappe.whitelist()
 def search_parts_by_vehicle(
 	vehicle_configuration: str | None = None,
+	vehicle_garage: str | None = None,
 	year: int | None = None,
 	make: str | None = None,
 	model: str | None = None,
 	limit: int = 50,
 ) -> list[dict]:
-	vehicle_configuration = _resolve_vehicle_configuration(vehicle_configuration, year, make, model)
+	if not vehicle_configuration and vehicle_garage:
+		from auto_parts.fitment.validation import resolve_vehicle_configuration_from_garage
+
+		vehicle_configuration = resolve_vehicle_configuration_from_garage(vehicle_garage)
+
+	vehicle_configuration = resolve_vehicle_configuration(vehicle_configuration, year, make, model)
 	if not vehicle_configuration:
 		frappe.throw(_("Vehicle Configuration is required."))
 

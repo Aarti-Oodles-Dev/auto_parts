@@ -19,6 +19,7 @@ frappe.ui.form.on("Sales Order", {
 		frm.trigger("toggle_vin_editability");
 		frm.trigger("toggle_auto_parts_flags");
 		frm.trigger("setup_auto_parts_buttons");
+		frm.trigger("setup_fitment_validation");
 	},
 
 	toggle_vin_editability(frm) {
@@ -36,12 +37,14 @@ frappe.ui.form.on("Sales Order", {
 		frm.trigger("toggle_vin_editability");
 		if (!frm.doc.vehicle_garage) {
 			frm.set_value("vin", "");
+			frm.trigger("clear_fitment_validation");
 			return;
 		}
 		frappe.db.get_value("Vehicle Garage", frm.doc.vehicle_garage, "vin").then((r) => {
 			frm._vin_from_garage = true;
 			frm.set_value("vin", r.message?.vin || "");
 		});
+		frm.trigger("validate_so_fitment");
 	},
 
 	vin(frm) {
@@ -234,4 +237,230 @@ frappe.ui.form.on("Sales Order", {
 
 		save_first();
 	},
+
+	setup_fitment_validation(frm) {
+		frm._fitment_mismatches = frm._fitment_mismatches || [];
+		frm.trigger("clear_fitment_validation");
+
+		if (frm.doc.docstatus !== 0 || !frm.doc.vehicle_garage) {
+			return;
+		}
+
+		frm.add_custom_button(
+			__("Find Parts for Vehicle"),
+			() => show_vehicle_parts_dialog(frm),
+			__("Auto Parts")
+		);
+
+		if ((frm.doc.items || []).some((row) => row.item_code)) {
+			frm.trigger("validate_so_fitment");
+		} else if ((frm._fitment_mismatches || []).length) {
+			frm.trigger("show_fitment_warnings");
+		}
+	},
+
+	clear_fitment_validation(frm) {
+		frm._fitment_mismatches = [];
+		if (frm._fitment_comment) {
+			frm.dashboard.remove_comment(frm._fitment_comment);
+			frm._fitment_comment = null;
+		}
+		frm.remove_custom_button(__("View Alternates"), __("Auto Parts"));
+	},
+
+	validate_so_fitment(frm) {
+		if (frm.doc.docstatus !== 0 || !frm.doc.vehicle_garage) {
+			return;
+		}
+
+		const item_codes = (frm.doc.items || []).map((row) => row.item_code).filter(Boolean);
+		if (!item_codes.length) {
+			frm.trigger("clear_fitment_validation");
+			return;
+		}
+
+		frappe.call({
+			method: "auto_parts.fitment.validation.validate_sales_order_fitment",
+			args: {
+				vehicle_garage: frm.doc.vehicle_garage,
+				items: item_codes,
+			},
+			callback(r) {
+				const mismatches = (r.message || []).filter((row) => row.status === "mismatch");
+				frm._fitment_mismatches = mismatches;
+				frm.trigger("show_fitment_warnings");
+			},
+		});
+	},
+
+	show_fitment_warnings(frm) {
+		if (frm._fitment_comment) {
+			frm.dashboard.remove_comment(frm._fitment_comment);
+			frm._fitment_comment = null;
+		}
+		frm.remove_custom_button(__("View Alternates"), __("Auto Parts"));
+
+		const mismatches = frm._fitment_mismatches || [];
+		if (!mismatches.length) {
+			return;
+		}
+
+		const items = mismatches.map((row) => frappe.utils.escape_html(row.item)).join(", ");
+		frm._fitment_comment = frm.dashboard.add_comment(
+			__(
+				"Fitment warning: {0} may not fit the selected vehicle. Use <b>View Alternates</b> in Auto Parts.",
+				[items]
+			),
+			"orange",
+			true
+		);
+
+		if (frm.doc.docstatus === 0) {
+			frm.add_custom_button(__("View Alternates"), () => show_alternates_dialog(frm), __("Auto Parts"));
+		}
+	},
 });
+
+frappe.ui.form.on("Sales Order Item", {
+	item_code(frm) {
+		frm.trigger("validate_so_fitment");
+	},
+
+	items_remove(frm) {
+		frm.trigger("validate_so_fitment");
+	},
+});
+
+function show_vehicle_parts_dialog(frm) {
+	frappe.call({
+		method: "auto_parts.fitment.search.search_parts_by_vehicle",
+		args: { vehicle_garage: frm.doc.vehicle_garage },
+		freeze: true,
+		freeze_message: __("Loading parts for vehicle..."),
+		callback(r) {
+			const rows = r.message || [];
+			if (!rows.length) {
+				frappe.msgprint(__("No parts found for this vehicle."));
+				return;
+			}
+
+			const dialog = new frappe.ui.Dialog({
+				title: __("Parts for Vehicle"),
+				size: "large",
+				fields: [
+					{
+						fieldtype: "HTML",
+						fieldname: "results",
+					},
+				],
+			});
+
+			const html = rows
+				.map(
+					(row) =>
+						`<tr>
+							<td><a href="#" data-item="${frappe.utils.escape_html(row.item)}">${frappe.utils.escape_html(row.item)}</a></td>
+							<td>${frappe.utils.escape_html(row.item_name || "")}</td>
+							<td>${frappe.utils.escape_html(row.position || "")}</td>
+							<td>${row.qty || 1}</td>
+						</tr>`
+				)
+				.join("");
+
+			dialog.fields_dict.results.$wrapper.html(`
+				<table class="table table-bordered table-sm">
+					<thead>
+						<tr>
+							<th>${__("Item")}</th>
+							<th>${__("Name")}</th>
+							<th>${__("Position")}</th>
+							<th>${__("Qty")}</th>
+						</tr>
+					</thead>
+					<tbody>${html}</tbody>
+				</table>
+			`);
+
+			dialog.fields_dict.results.$wrapper.find("a[data-item]").on("click", (e) => {
+				e.preventDefault();
+				const item_code = e.currentTarget.getAttribute("data-item");
+				dialog.hide();
+				add_item_to_sales_order(frm, item_code);
+			});
+
+			dialog.show();
+		},
+	});
+}
+
+function show_alternates_dialog(frm) {
+	const mismatches = frm._fitment_mismatches || [];
+	if (!mismatches.length) {
+		frappe.msgprint(__("No fitment mismatches on this order."));
+		return;
+	}
+
+	const item = mismatches[0].item;
+	frappe.call({
+		method: "auto_parts.fitment.alternates.get_smart_alternates",
+		args: {
+			item,
+			vehicle_configuration: mismatches[0].vehicle_configuration,
+		},
+		freeze: true,
+		freeze_message: __("Loading alternates..."),
+		callback(r) {
+			const data = r.message || {};
+			const supersession = (data.supersession_chain || []).join(" → ");
+			const alternates = data.fitment_alternates || [];
+
+			let message = `<p><b>${frappe.utils.escape_html(item)}</b></p>`;
+			if (supersession) {
+				message += `<p>${__("Supersession")}: ${frappe.utils.escape_html(supersession)}</p>`;
+			}
+
+			if (!alternates.length) {
+				message += `<p>${__("No alternate parts found for this vehicle.")}</p>`;
+				frappe.msgprint({ title: __("Smart Alternates"), message });
+				return;
+			}
+
+			message += `<table class="table table-bordered table-sm"><thead><tr>
+				<th>${__("Item")}</th><th>${__("Name")}</th><th>${__("Position")}</th>
+			</tr></thead><tbody>`;
+			alternates.forEach((row) => {
+				message += `<tr>
+					<td><a href="#" class="alt-item" data-item="${frappe.utils.escape_html(row.item)}">${frappe.utils.escape_html(row.item)}</a></td>
+					<td>${frappe.utils.escape_html(row.item_name || "")}</td>
+					<td>${frappe.utils.escape_html(row.position || "")}</td>
+				</tr>`;
+			});
+			message += "</tbody></table>";
+
+			const d = frappe.msgprint({
+				title: __("Smart Alternates"),
+				message,
+				wide: true,
+			});
+
+			d.$wrapper.find("a.alt-item").on("click", (e) => {
+				e.preventDefault();
+				frappe.hide_msgprint();
+				add_item_to_sales_order(frm, e.currentTarget.getAttribute("data-item"));
+			});
+		},
+	});
+}
+
+function add_item_to_sales_order(frm, item_code) {
+	const exists = (frm.doc.items || []).some((row) => row.item_code === item_code);
+	if (exists) {
+		frappe.show_alert({ message: __("Item already on this order."), indicator: "orange" });
+		return;
+	}
+
+	const row = frm.add_child("items");
+	frappe.model.set_value(row.doctype, row.name, "item_code", item_code);
+	frm.refresh_field("items");
+	frm.trigger("validate_so_fitment");
+}
