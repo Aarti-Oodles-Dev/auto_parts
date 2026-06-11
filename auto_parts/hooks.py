@@ -47,9 +47,12 @@ doc_events = {
 	"Customer": {
 		"validate": "auto_parts.sales.customer.validate_customer",
 	},
-	"Item": {
-		"validate": "auto_parts.cross_reference.item.validate_item_cross_references",
-	},
+    "Item": {
+        "validate": "auto_parts.cross_reference.item.validate_item_cross_references",
+    },
+    "Stock Ledger Entry": {
+        "on_submit": "auto_parts.marketplace.sync_engine.on_stock_change",
+    },
 }
 
 fixtures = [
@@ -70,5 +73,11 @@ fixtures = [
 scheduler_events = {
     "daily": [
         "auto_parts.auto_parts.doctype.auto_parts_settings.auto_parts_settings.create_reorder_material_requests"
-    ]
+    ],
+    "cron": {
+        "*/30 * * * *": [
+            "auto_parts.marketplace.sync_engine.scheduled_sync_listings",
+            "auto_parts.marketplace.sync_engine.scheduled_import_orders",
+        ]
+    },
 }

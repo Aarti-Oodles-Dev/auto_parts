@@ -1,23 +1,18 @@
-from frappe.model.document import Document
+# Copyright (c) 2026, Masood Javid and contributors
+
 import frappe
+from frappe.model.document import Document
 from frappe.utils import flt
-# auto_parts/doctype/marketplace_listing/marketplace_listing.py
+
+from auto_parts.marketplace.pricing import calculate_listing_price
+
+
 class MarketplaceListing(Document):
-    def before_save(self):
-        if self.pricing_method == 'Cost Plus':
-            self.calculate_channel_price()
+	def before_save(self):
+		if self.pricing_method in ("Cost Plus", "Price List"):
+			self.listing_price = calculate_listing_price(self)
 
-    def calculate_channel_price(self):
-        # Item ka average cost lo
-        avg_cost = frappe.db.get_value(
-            'Item',
-            self.item_code,
-            'valuation_rate'
-        ) or 0
-
-        if not avg_cost:
-            frappe.throw(f'No valuation rate found for {self.item_code}')
-
-        markup = flt(self.channel_markup_percent) / 100
-        self.listing_price = flt(avg_cost) * (1 + markup)
-        self.listing_price = round(self.listing_price, 2)
+	@frappe.whitelist()
+	def calculate_channel_price(self):
+		self.listing_price = calculate_listing_price(self)
+		return flt(self.listing_price)
