@@ -1,0 +1,35 @@
+{
+ "attach_files": "",
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status == \"Failed\"",
+ "condition_type": "Python",
+ "creation": "2026-06-11 16:52:55.583316",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Marketplace Sync Log",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2026-06-11 16:54:30.873735",
+ "modified_by": "Administrator",
+ "module": "Auto Parts",
+ "name": "Marketplace Sync Failure Alert",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "cc": "",
+   "receiver_by_role": "System Manager"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "",
+ "sender_email": "",
+ "subject": "Marketplace Sync Failure Alert"
+}

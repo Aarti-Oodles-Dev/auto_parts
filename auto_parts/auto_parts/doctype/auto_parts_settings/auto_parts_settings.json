@@ -23,6 +23,7 @@
   "reorder_warehouse",
   "column_break_tqhp",
   "reorder_qty",
+  "low_stock_notification",
   "integrations_tab",
   "vin_section",
   "enable_vin_decode_cache",
@@ -205,11 +206,17 @@
    "fieldname": "shipstation_api_secret",
    "fieldtype": "Password",
    "label": "ShipStation API Secret"
+  },
+  {
+   "fieldname": "low_stock_notification",
+   "fieldtype": "Link",
+   "label": "Low Stock Notification",
+   "options": "Notification"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2026-06-08 14:27:33.943822",
+ "modified": "2026-06-11 17:14:19.722166",
  "modified_by": "Administrator",
  "module": "Auto Parts",
  "name": "Auto Parts Settings",

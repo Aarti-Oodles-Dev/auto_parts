@@ -56,14 +56,14 @@ doc_events = {
 }
 
 fixtures = [
-	# {
-	# 	"dt": "Custom Field",
-	# 	"filters": [["module", "=", "Auto Parts"]],
-	# },
-	# {
-	# 	"dt": "DocType",
-	# 	"filters": [["module", "=", "Auto Parts"]],
-	# },
+	{
+		"dt": "Custom Field",
+		"filters": [["module", "=", "Auto Parts"]],
+	},
+	{
+		"dt": "DocType",
+		"filters": [["module", "=", "Auto Parts"]],
+	},
     {"dt": "Workflow", "filters": [["name", "in", ["Transfer Approval", "RMA Approval", "Warranty Claim Flow", "Core Return Flow"]]]},
     {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Pending Approval", "Approved", "Rejected", "Credited", "Inspected", "Received", "Resolved", "Pending"]]]},
     {"dt": "Workflow Action Master", "filters": [["name", "in", ["Pending Approval", "Credit", "Inspect", "Resolved"]]]},
@@ -72,7 +72,8 @@ fixtures = [
 # Daily auto-run ke liye
 scheduler_events = {
     "daily": [
-        "auto_parts.auto_parts.doctype.auto_parts_settings.auto_parts_settings.create_reorder_material_requests"
+        "auto_parts.auto_parts.doctype.auto_parts_settings.auto_parts_settings.create_reorder_material_requests",
+        "auto_parts.api.email_alert.send_low_stock_alert"
     ],
     "cron": {
         "*/30 * * * *": [
