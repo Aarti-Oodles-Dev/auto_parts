@@ -6,3 +6,4 @@
 auto_parts.patches.v1_0.setup_marketplace_channels
 auto_parts.patches.v1_0.setup_sales_defaults
 auto_parts.patches.v1_0.add_marketplace_sales_order_fields
+auto_parts.patches.v1_0.enable_barcode_scanning

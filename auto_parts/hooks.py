@@ -24,8 +24,13 @@ doctype_js = {
 	"Sales Invoice": "public/js/sales_invoice.js",
 	"Customer": "public/js/customer.js",
 	"Item": "public/js/item.js",
-    "Delivery Note": "public/js/delivery_note.js",
+	"Delivery Note": "public/js/delivery_note.js",
+	"Pick List": "public/js/mobile_warehouse.js",
+	"Stock Entry": "public/js/mobile_warehouse.js",
+	"Purchase Receipt": "public/js/mobile_warehouse.js",
 }
+
+app_include_css = "/assets/auto_parts/css/mobile_warehouse.css"
 
 override_doctype_dashboards = {
 	"Customer": "auto_parts.vehicle_garage.customer_dashboard.get_dashboard_data",
