@@ -1,0 +1,42 @@
+/* Mobile-friendly warehouse scanning for Pick List, Stock Entry, Purchase Receipt */
+
+@media (max-width: 768px) {
+	body.auto-parts-mobile-warehouse .form-page {
+		padding-bottom: 80px;
+	}
+
+	body.auto-parts-mobile-warehouse [data-fieldname="scan_barcode"] {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: var(--card-bg);
+		padding: 8px 0;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	body.auto-parts-mobile-warehouse [data-fieldname="scan_barcode"] input {
+		font-size: 1.25rem;
+		min-height: 48px;
+	}
+
+	body.auto-parts-mobile-warehouse [data-fieldname="last_scanned_warehouse"] input {
+		font-size: 1rem;
+		min-height: 40px;
+	}
+
+	body.auto-parts-mobile-warehouse .form-assignments,
+	body.auto-parts-mobile-warehouse .form-shared {
+		display: none;
+	}
+
+	body.auto-parts-mobile-warehouse .grid-row input[data-fieldname="picked_qty"],
+	body.auto-parts-mobile-warehouse .grid-row input[data-fieldname="qty"],
+	body.auto-parts-mobile-warehouse .grid-row input[data-fieldname="received_qty"] {
+		font-size: 1.1rem;
+		min-height: 40px;
+	}
+
+	body.auto-parts-mobile-warehouse .grid-row .col[data-fieldname="item_code"] {
+		min-width: 120px;
+	}
+}

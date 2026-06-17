@@ -8,6 +8,7 @@ def after_install():
 	create_default_marketplace_channels()
 	create_default_price_lists()
 	create_default_pos_profile()
+	enable_barcode_scanning()
 
 
 def create_auto_parts_settings():
@@ -100,3 +101,9 @@ def create_default_pos_profile():
 		frappe.db.commit()
 	except Exception:
 		frappe.log_error(title="Auto Parts POS Profile setup skipped")
+
+
+def enable_barcode_scanning():
+	"""Enable ERPNext core barcode fields for warehouse mobile workflows."""
+	frappe.db.set_single_value("Stock Settings", "show_barcode_field", 1)
+	frappe.db.commit()
