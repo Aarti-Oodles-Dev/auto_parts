@@ -1,33 +1,40 @@
 {
   "actions": [],
   "allow_import": 1,
-  "autoname": "field:vcdb_id",
-  "creation": "2026-06-09 00:00:00.000000",
+  "autoname": "field:vcdb_vehicle_id",
+  "creation": "2026-06-17 00:00:00.000000",
   "doctype": "DocType",
   "engine": "InnoDB",
   "field_order": [
-    "vcdb_id",
+    "vcdb_vehicle_id",
+    "vcdb_base_vehicle_id",
     "year",
-    "make_id",
+    "column_break_1",
     "make",
-    "column_break_vehicle",
-    "model_id",
     "model",
     "submodel",
-    "engine",
-    "section_break_dates",
+    "section_break_extra",
+    "region",
+    "publication_stage",
+    "column_break_2",
     "effective_date",
     "end_date"
   ],
   "fields": [
     {
-      "fieldname": "vcdb_id",
+      "fieldname": "vcdb_vehicle_id",
       "fieldtype": "Data",
       "in_list_view": 1,
       "in_standard_filter": 1,
-      "label": "Base Vehicle ID",
+      "label": "VCdb Vehicle ID",
       "reqd": 1,
       "unique": 1
+    },
+    {
+      "fieldname": "vcdb_base_vehicle_id",
+      "fieldtype": "Data",
+      "label": "Base Vehicle ID",
+      "in_standard_filter": 1
     },
     {
       "fieldname": "year",
@@ -37,29 +44,21 @@
       "label": "Year"
     },
     {
-      "fieldname": "make_id",
-      "fieldtype": "Data",
-      "label": "Make ID"
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
     },
     {
       "fieldname": "make",
       "fieldtype": "Data",
       "in_list_view": 1,
+      "in_standard_filter": 1,
       "label": "Make"
-    },
-    {
-      "fieldname": "column_break_vehicle",
-      "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "model_id",
-      "fieldtype": "Data",
-      "label": "Model ID"
     },
     {
       "fieldname": "model",
       "fieldtype": "Data",
       "in_list_view": 1,
+      "in_standard_filter": 1,
       "label": "Model"
     },
     {
@@ -68,14 +67,23 @@
       "label": "Submodel"
     },
     {
-      "fieldname": "engine",
-      "fieldtype": "Data",
-      "label": "Engine"
+      "fieldname": "section_break_extra",
+      "fieldtype": "Section Break",
+      "label": "Additional Info"
     },
     {
-      "fieldname": "section_break_dates",
-      "fieldtype": "Section Break",
-      "label": "Dates"
+      "fieldname": "region",
+      "fieldtype": "Data",
+      "label": "Region"
+    },
+    {
+      "fieldname": "publication_stage",
+      "fieldtype": "Data",
+      "label": "Publication Stage"
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
     },
     {
       "fieldname": "effective_date",
@@ -92,16 +100,16 @@
   "modified": "2026-06-17 00:00:00.000000",
   "modified_by": "Administrator",
   "module": "Auto Parts",
-  "name": "VCdb Base Vehicle",
+  "name": "AC Vehicle",
   "naming_rule": "By fieldname",
   "owner": "Administrator",
   "permissions": [
     {"create": 1, "delete": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
     {"create": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
   ],
-  "search_fields": "vcdb_id,year,make,model,engine",
+  "search_fields": "vcdb_vehicle_id,year,make,model,submodel",
   "sort_field": "year",
   "sort_order": "DESC",
-  "title_field": "vcdb_id",
+  "title_field": "vcdb_vehicle_id",
   "track_changes": 1
 }

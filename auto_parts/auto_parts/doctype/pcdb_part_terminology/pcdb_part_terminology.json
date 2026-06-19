@@ -1,69 +1,88 @@
 {
- "actions": [],
- "allow_import": 1,
- "autoname": "field:part_terminology_id",
- "creation": "2026-06-09 00:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "part_terminology_id",
-  "part_terminology_name"
- ],
- "fields": [
-  {
-   "fieldname": "part_terminology_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Part Terminology ID",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "part_terminology_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Part Terminology Name",
-   "reqd": 1
-  }
- ],
- "links": [],
- "modified": "2026-06-09 00:00:00.000000",
- "modified_by": "Administrator",
- "module": "Auto Parts",
- "name": "PCdb Part Terminology",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Stock Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "search_fields": "part_terminology_id,part_terminology_name",
- "sort_field": "part_terminology_name",
- "sort_order": "ASC",
- "title_field": "part_terminology_name",
- "track_changes": 1
+  "actions": [],
+  "allow_import": 1,
+  "autoname": "field:part_terminology_id",
+  "creation": "2026-06-09 00:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "part_terminology_id",
+    "part_terminology_name",
+    "column_break_1",
+    "culture_id",
+    "section_break_desc",
+    "part_terminology_description",
+    "section_break_dates",
+    "effective_date",
+    "end_date"
+  ],
+  "fields": [
+    {
+      "fieldname": "part_terminology_id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Part Terminology ID",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "part_terminology_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Part Terminology Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "culture_id",
+      "fieldtype": "Data",
+      "label": "Culture ID"
+    },
+    {
+      "fieldname": "section_break_desc",
+      "fieldtype": "Section Break",
+      "label": "Description"
+    },
+    {
+      "fieldname": "part_terminology_description",
+      "fieldtype": "Small Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "section_break_dates",
+      "fieldtype": "Section Break",
+      "label": "Dates"
+    },
+    {
+      "fieldname": "effective_date",
+      "fieldtype": "Datetime",
+      "label": "Effective Date"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Datetime",
+      "label": "End Date"
+    }
+  ],
+  "links": [],
+  "modified": "2026-06-17 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Auto Parts",
+  "name": "PCdb Part Terminology",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+  ],
+  "search_fields": "part_terminology_id,part_terminology_name",
+  "sort_field": "part_terminology_name",
+  "sort_order": "ASC",
+  "title_field": "part_terminology_name",
+  "track_changes": 1
 }

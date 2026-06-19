@@ -1,76 +1,81 @@
 {
- "actions": [],
- "allow_import": 1,
- "autoname": "field:model_id",
- "creation": "2026-06-09 00:00:00.000000",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "model_id",
-  "model_name",
-  "make_id"
- ],
- "fields": [
-  {
-   "fieldname": "model_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Model ID",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "model_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Model Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "make_id",
-   "fieldtype": "Data",
-   "in_standard_filter": 1,
-   "label": "Make ID"
-  }
- ],
- "links": [],
- "modified": "2026-06-09 00:00:00.000000",
- "modified_by": "Administrator",
- "module": "Auto Parts",
- "name": "VCdb Model",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Stock Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "search_fields": "model_id,model_name,make_id",
- "sort_field": "model_name",
- "sort_order": "ASC",
- "title_field": "model_name",
- "track_changes": 1
+  "actions": [],
+  "allow_import": 1,
+  "autoname": "field:model_id",
+  "creation": "2026-06-09 00:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "model_id",
+    "model_name",
+    "make_id",
+    "column_break_1",
+    "vehicle_type_id",
+    "culture_id",
+    "effective_date",
+    "end_date"
+  ],
+  "fields": [
+    {
+      "fieldname": "model_id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Model ID",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "model_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Model Name"
+    },
+    {
+      "fieldname": "make_id",
+      "fieldtype": "Data",
+      "label": "Make ID"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "vehicle_type_id",
+      "fieldtype": "Data",
+      "label": "Vehicle Type ID"
+    },
+    {
+      "fieldname": "culture_id",
+      "fieldtype": "Data",
+      "label": "Culture ID"
+    },
+    {
+      "fieldname": "effective_date",
+      "fieldtype": "Datetime",
+      "label": "Effective Date"
+    },
+    {
+      "fieldname": "end_date",
+      "fieldtype": "Datetime",
+      "label": "End Date"
+    }
+  ],
+  "links": [],
+  "modified": "2026-06-17 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Auto Parts",
+  "name": "VCdb Model",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+  ],
+  "search_fields": "model_id,model_name",
+  "sort_field": "model_name",
+  "sort_order": "ASC",
+  "title_field": "model_name",
+  "track_changes": 1
 }
