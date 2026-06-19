@@ -1,44 +1,38 @@
 {
   "actions": [],
   "allow_import": 1,
-  "autoname": "field:make_id",
-  "creation": "2026-06-09 00:00:00.000000",
+  "autoname": "field:category_id",
+  "creation": "2026-06-17 00:00:00.000000",
   "doctype": "DocType",
   "engine": "InnoDB",
   "field_order": [
-    "make_id",
-    "make_name",
+    "category_id",
+    "category_name",
     "column_break_1",
-    "culture_id",
     "effective_date",
     "end_date"
   ],
   "fields": [
     {
-      "fieldname": "make_id",
+      "fieldname": "category_id",
       "fieldtype": "Data",
       "in_list_view": 1,
       "in_standard_filter": 1,
-      "label": "Make ID",
+      "label": "Category ID",
       "reqd": 1,
       "unique": 1
     },
     {
-      "fieldname": "make_name",
+      "fieldname": "category_name",
       "fieldtype": "Data",
       "in_list_view": 1,
       "in_standard_filter": 1,
-      "label": "Make Name",
+      "label": "Category Name",
       "reqd": 1
     },
     {
       "fieldname": "column_break_1",
       "fieldtype": "Column Break"
-    },
-    {
-      "fieldname": "culture_id",
-      "fieldtype": "Data",
-      "label": "Culture ID"
     },
     {
       "fieldname": "effective_date",
@@ -55,16 +49,39 @@
   "modified": "2026-06-17 00:00:00.000000",
   "modified_by": "Administrator",
   "module": "Auto Parts",
-  "name": "VCdb Make",
+  "name": "AC Part Category",
   "naming_rule": "By fieldname",
   "owner": "Administrator",
   "permissions": [
-    {"create": 1, "delete": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
-    {"create": 1, "email": 1, "export": 1, "import": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "import": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "import": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Stock Manager",
+      "share": 1,
+      "write": 1
+    }
   ],
-  "search_fields": "make_id,make_name",
-  "sort_field": "make_name",
+  "search_fields": "category_id,category_name",
+  "sort_field": "category_name",
   "sort_order": "ASC",
-  "title_field": "make_name",
+  "title_field": "category_name",
   "track_changes": 1
 }
