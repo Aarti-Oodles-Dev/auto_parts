@@ -8,28 +8,28 @@
 
 echo "MySQL root password enter karo:"
 read -s MYSQL_PASS
-MYSQL_CMD="mysql -u root -p${MYSQL_PASS}"
+MYSQL_CMD="mysql -h db -u root -p${MYSQL_PASS}"
 
 echo ""
 echo "=== Purani autocare_master DB drop ho rahi hai... ==="
-mysql -u root -p${MYSQL_PASS} -e "DROP DATABASE IF EXISTS autocare_master;"
+mysql -h db -u root -p${MYSQL_PASS} -e "DROP DATABASE IF EXISTS autocare_master;"
 
 echo "=== 6 naye AutoCare databases create ho rahe hain... ==="
-mysql -u root -p${MYSQL_PASS} -e "
+mysql -h db -u root -p${MYSQL_PASS} -e "
 CREATE DATABASE IF NOT EXISTS autocare_vcdb  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_pcdb  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_padb  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_pcadb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_qdb   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_brands CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-GRANT SELECT ON autocare_vcdb.*   TO \'_1cd0676dbd65d452\'@\'localhost\';
-GRANT SELECT ON autocare_pcdb.*   TO \'_1cd0676dbd65d452\'@\'localhost\';
-GRANT SELECT ON autocare_padb.*   TO \'_1cd0676dbd65d452\'@\'localhost\';
-GRANT SELECT ON autocare_pcadb.*  TO \'_1cd0676dbd65d452\'@\'localhost\';
-GRANT SELECT ON autocare_qdb.*    TO \'_1cd0676dbd65d452\'@\'localhost\';
-GRANT SELECT ON autocare_brands.* TO \'_1cd0676dbd65d452\'@\'localhost\';
+GRANT SELECT ON autocare_vcdb.*   TO '_b91c46a6a05c36aa'@'%';
+GRANT SELECT ON autocare_pcdb.*   TO '_b91c46a6a05c36aa'@'%';
+GRANT SELECT ON autocare_padb.*   TO '_b91c46a6a05c36aa'@'%';
+GRANT SELECT ON autocare_pcadb.*  TO '_b91c46a6a05c36aa'@'%';
+GRANT SELECT ON autocare_qdb.*    TO '_b91c46a6a05c36aa'@'%';
+GRANT SELECT ON autocare_brands.* TO '_b91c46a6a05c36aa'@'%';
 FLUSH PRIVILEGES;
-SHOW DATABASES LIKE \'autocare_%\';
+SHOW DATABASES LIKE 'autocare_%';
 "
 
 echo ""

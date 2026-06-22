@@ -27,7 +27,7 @@ import_sql() {
 
     echo "=== Importing: $DB from $ZIP_FILE ==="
     # Zip se extract karke import
-    unzip -p "$ZIP_FILE" | mysql -u root -p${MYSQL_PASS} "$DB"
+    unzip -p "$ZIP_FILE" | mysql -h db -u root -p${MYSQL_PASS} "$DB"
     if [ $? -eq 0 ]; then
         echo "  DONE: $DB imported!"
     else
