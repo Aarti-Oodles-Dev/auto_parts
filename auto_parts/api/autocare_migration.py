@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-"""
-AutoCare DB se ERPNext Doctypes mein Data Migrate karo
-
-Run karne ka tarika (D2 se - frappe-bench folder mein):
-  bench --site autos.com execute auto_parts.api.autocare_migration.run_migration
-
-Ya alag alag:
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_makes
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_models
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_base_vehicles
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_part_terminologies
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_brands
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_part_categories
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_part_sub_categories
-  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_vehicles
-"""
 
 import frappe
 import pymysql
@@ -131,12 +115,6 @@ def migrate_models():
 
 
 def migrate_base_vehicles():
-    """
-    autocare_vcdb.BaseVehicle + Make + Model -> tabVCdb Base Vehicle
-    ERPNext fields: name, vcdb_id, year, make_id, make, model_id, model,
-                    submodel, engine, effective_date, end_date
-    Note: submodel aur engine BaseVehicle table mein nahi hote isliye blank rahenge
-    """
     print("\n=== Migrating: VCdb Base Vehicles ===")
     conn = get_conn("autocare_vcdb")
     cursor = conn.cursor()
@@ -361,18 +339,8 @@ def migrate_vehicles():
 
     count = bulk_insert("AC Vehicle", rows)
     print(f"  DONE: {count} vehicles inserted (2023+ only)")
-    print("  Sab years ke liye WHERE clause hata do aur migrate_vehicles dobara chalao")
-
 
 def run_migration():
-    """
-    Sab kuch ek saath chalao
-    Vehicles alag chalao kyunki wo bahut bada dataset hai
-    """
-    print("=" * 50)
-    print("AutoCare -> ERPNext Full Migration Start")
-    print("=" * 50)
-
     migrate_makes()
     migrate_models()
     migrate_base_vehicles()
@@ -381,12 +349,7 @@ def run_migration():
     migrate_part_categories()
     migrate_part_sub_categories()
     migrate_vehicles()
-
-    # Vehicles alag chalao - bahut bada dataset hai
-    # bench --site autos.com execute auto_parts.api.autocare_migration.migrate_vehicles
-
     print("\n" + "=" * 50)
     print("Migration Complete!")
-    print("Vehicles ke liye alag run karo:")
     print("  bench --site autos.com execute auto_parts.api.autocare_migration.migrate_vehicles")
     print("=" * 50)

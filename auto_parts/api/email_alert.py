@@ -16,14 +16,13 @@ def send_low_stock_alert():
 
     if not items:
         return
-
-    # Bin doc lo kisi bhi matched item ka — send() ko real doc chahiye
+    
     bin_doc = frappe.get_doc("Bin", {
         "item_code": items[0]["item_code"],
         "warehouse": items[0]["warehouse"]
     })
 
-    # Extra context attach karo doc pe
+
     bin_doc.item_list = items
     bin_doc.reorder_level = reorder_level
 

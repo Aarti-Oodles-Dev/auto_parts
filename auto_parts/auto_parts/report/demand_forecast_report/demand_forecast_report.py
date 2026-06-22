@@ -13,7 +13,7 @@ def execute(filters=None):
         {"label": "Status",                "fieldname": "status",          "fieldtype": "Data",                         "width": 120},
     ]
 
-    # Last 30 days sales velocity per item per warehouse
+
     sales_data = frappe.db.sql("""
         SELECT
             sii.item_code,
