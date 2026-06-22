@@ -11,10 +11,10 @@ read -s MYSQL_PASS
 MYSQL_CMD="mysql -h db -u root -p${MYSQL_PASS}"
 
 echo ""
-echo "=== Purani autocare_master DB drop ho rahi hai... ==="
+echo "=== Dropping Old Db autocare_master... ==="
 mysql -h db -u root -p${MYSQL_PASS} -e "DROP DATABASE IF EXISTS autocare_master;"
 
-echo "=== 6 naye AutoCare databases create ho rahe hain... ==="
+echo "=== Creating 6 new AutoCare databases... ==="
 mysql -h db -u root -p${MYSQL_PASS} -e "
 CREATE DATABASE IF NOT EXISTS autocare_vcdb  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS autocare_pcdb  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -33,4 +33,4 @@ SHOW DATABASES LIKE 'autocare_%';
 "
 
 echo ""
-echo "=== DONE! 6 databases ready. Ab Step 2 run karo ==="
+echo "=== DONE! 6 databases ready."

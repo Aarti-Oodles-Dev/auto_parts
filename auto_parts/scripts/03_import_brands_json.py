@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# ============================================================
-# STEP 3: AutoCare BrandTable JSON import karo
-# D1 se run karo:
-#   cd ~/Desktop/Asian-Autos/frappe-bench/apps/auto_parts
-#   ~/Desktop/Asian-Autos/frappe-bench/env/bin/python3 auto_parts/scripts/03_import_brands_json.py /home/aarti-kumari/Downloads/AutoCare_BrandTable_V2.json
-# ============================================================
-
 import json
 import sys
 import pymysql
@@ -13,7 +5,7 @@ import pymysql
 MYSQL_CONFIG = {
     "host": "db",
     "user": "root",
-    "password": "admin",   # <--- apna MySQL root password daal
+    "password": "admin",   # <--- Enter your MySQL root password here
     "db": "autocare_brands",
     "charset": "utf8mb4",
 }
@@ -24,7 +16,6 @@ def import_brands(json_file):
     with open(json_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # BrandTable array dhundo
     brands = []
     if isinstance(data, list):
         brands = data
@@ -91,4 +82,4 @@ def import_brands(json_file):
 if __name__ == "__main__":
     json_file = sys.argv[1] if len(sys.argv) > 1 else "/home/aarti-kumari/Downloads/AutoCare_BrandTable_V2.json"
     import_brands(json_file)
-    print("Ab Step 4 run karo - bench migrate")
+    print("Now run step 4 - bench migrate")

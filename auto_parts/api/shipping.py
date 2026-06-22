@@ -1,5 +1,6 @@
 # auto_parts/api/shipping.py
 import frappe
+from frappe.utils import flt
 from auto_parts.api.shipstation import ShipStationConnector
 @frappe.whitelist()
 def get_shipping_rates(delivery_note):

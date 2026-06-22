@@ -8,7 +8,7 @@
 # SQL zip files teri machine pe kahan hain? wahan ka path daal
 SQL_DIR="${1:-/home/aarti-kumari/Downloads}"
 
-echo "MySQL root password enter karo:"
+echo "Enter MySQL root password:"
 read -s MYSQL_PASS
 
 echo ""
@@ -26,7 +26,6 @@ import_sql() {
     fi
 
     echo "=== Importing: $DB from $ZIP_FILE ==="
-    # Zip se extract karke import
     unzip -p "$ZIP_FILE" | mysql -h db -u root -p${MYSQL_PASS} "$DB"
     if [ $? -eq 0 ]; then
         echo "  DONE: $DB imported!"
@@ -42,5 +41,5 @@ import_sql "autocare_padb"  "AutoCare_PAdb_enUS_MySQL_*.zip"
 import_sql "autocare_pcadb" "AutoCare_PCAdb_enUS_MySQL_*.zip"
 import_sql "autocare_qdb"   "AutoCare_Qdb_enUS_MySQL_*.zip"
 
-echo "=== Sab SQL imports complete! ==="
-echo "Ab Step 3 run karo - Brands JSON import"
+echo "=== SQL imports complete! ==="
+echo "Now run step 3 - Brands JSON import"
