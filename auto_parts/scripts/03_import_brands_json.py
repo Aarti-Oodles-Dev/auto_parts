@@ -11,9 +11,9 @@ import sys
 import pymysql
 
 MYSQL_CONFIG = {
-    "host": "localhost",
+    "host": "db",
     "user": "root",
-    "password": "1234",   # <--- apna MySQL root password daal
+    "password": "admin",   # <--- apna MySQL root password daal
     "db": "autocare_brands",
     "charset": "utf8mb4",
 }

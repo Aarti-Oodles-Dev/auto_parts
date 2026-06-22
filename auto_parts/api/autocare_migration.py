@@ -23,9 +23,9 @@ import pymysql
 # MySQL Config - apna password yahan daal
 # =============================================
 AUTOCARE_DB_CONFIG = {
-    "host": "localhost",
+    "host": "db",
     "user": "root",
-    "password": "1234",   # <--- apna MySQL root password
+    "password": "admin",   # <--- apna MySQL root password
     "charset": "utf8mb4",
     "cursorclass": pymysql.cursors.DictCursor,
 }
