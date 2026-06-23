@@ -64,16 +64,11 @@
    "reqd": 1
   },
   {
-   "fieldname": "sales_order",
-   "fieldtype": "Link",
-   "label": "Sales Order",
-   "options": "Sales Order"
-  },
-  {
    "fieldname": "delivery_note",
    "fieldtype": "Link",
    "label": "Delivery Note",
-   "options": "Delivery Note"
+   "options": "Delivery Note",
+   "link_filters": "[[\"Delivery Note\", \"docstatus\", \"=\", \"1\"], [\"Delivery Note\", \"is_return\", \"=\", 0]]"
   },
   {
    "fieldname": "section_break_items",

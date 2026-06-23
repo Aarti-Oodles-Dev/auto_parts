@@ -7,9 +7,15 @@ class RMA(Document):
         self.create_return_delivery_note()
 
     def create_return_delivery_note(self):
+        original_dn_items = {
+            d.item_code: d.name
+            for d in frappe.get_doc('Delivery Note', self.delivery_note).items
+        }
+
         dn = frappe.new_doc('Delivery Note')
         dn.customer = self.customer
         dn.is_return = 1
+        dn.return_against = self.delivery_note
         dn.custom_rma = self.name
         dn.posting_date = frappe.utils.today()
 
@@ -18,7 +24,7 @@ class RMA(Document):
                 'item_code': item.item,
                 'qty': -item.qty,
                 'warehouse': item.return_warehouse,
-                'return_against': self.delivery_note,
+                'dn_detail': original_dn_items.get(item.item),  # against_dn_item nahi, dn_detail hai
             })
 
         dn.flags.ignore_permissions = True

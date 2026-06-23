@@ -56,17 +56,12 @@
    "reqd": 1
   },
   {
-   "fieldname": "sales_invoice",
-   "fieldtype": "Link",
-   "label": "Sales Invoice",
-   "options": "Sales Invoice"
-  },
-  {
-   "fieldname": "delivery_note",
-   "fieldtype": "Link",
-   "label": "Delivery Note",
-   "options": "Delivery Note"
-  },
+    "fieldname": "sales_invoice",
+    "fieldtype": "Link",
+    "label": "Sales Invoice",
+    "options": "Sales Invoice",
+    "link_filters": "[[\"Sales Invoice\", \"docstatus\", \"=\", \"1\"], [\"Sales Invoice\", \"is_return\", \"=\", 0]]"
+    },
   {
    "fieldname": "section_break_items",
    "fieldtype": "Section Break",
