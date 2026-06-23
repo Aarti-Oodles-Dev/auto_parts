@@ -146,7 +146,7 @@ frappe.ui.form.on("Item", {
                         }
                     }
                 });
-            }, __('Part Info'));
+            }, __('Auto Parts'));
         
 
         // Warning if this item is superseded
