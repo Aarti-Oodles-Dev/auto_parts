@@ -23,5 +23,4 @@ def get_supersession_chain(item_code):
             break
         chain.append(nxt)
         current = nxt
-    
-    return chaingfhghg
+    return chain
