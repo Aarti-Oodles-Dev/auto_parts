@@ -16,7 +16,7 @@ def get_supersession_chain(item_code):
     for _ in range(20):  # max depth safeguard
         nxt = frappe.db.get_value(
             'Part Supersession',
-            {'old_item': current, 'docstatus': 1},
+            {'old_item': current},
             'new_item'
         )
         if not nxt or nxt in chain:
@@ -24,4 +24,4 @@ def get_supersession_chain(item_code):
         chain.append(nxt)
         current = nxt
     
-    return chain
+    return chaingfhghg
